@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Azure File Sharing Portal</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+
+        Azure File Sharing Portal
+
+    </div>
+
+    <nav>
+
+        <ul>
+
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">My Files</a></li>
+            <li><a href="#">Storage</a></li>
+            <li><a href="#">Help</a></li>
+
+        </ul>
+
+    </nav>
+
+    <button class="login-btn">
+
+        Login
+
+    </button>
+
+</header>
+
+<main class="container">
+
+<section class="hero">
+
+<span class="badge">
+
+Secure Cloud Storage
+
+</span>
+
+<h1>
+
+Store, Manage & Share Files Securely
+
+</h1>
+
+<p>
+
+Upload and manage your files using Azure Blob Storage.
+
+</p>
+
+</section>
+
+<section class="search-section">
+
+<div class="search-box">
+
+<input
+type="text"
+placeholder="Search files...">
+
+</div>
+
+</section>
+
+<section class="upload-card" id="uploadCard">
+
+    <div class="upload-icon">
+        ↑
+    </div>
+
+    <h2>Drag & Drop Files Here</h2>
+
+    <p>
+        Upload documents, images, videos and archives securely.
+    </p>
+
+    <input
+        type="file"
+        id="fileInput"
+        hidden>
+
+    <button
+        class="upload-btn"
+        id="browseBtn">
+
+        Browse Files
+
+    </button>
+
+    <button
+        class="upload-btn"
+        id="uploadBtn"
+        style="margin-left:12px;">
+
+        Upload
+
+    </button>
+
+    <div
+        id="selectedFile"
+        style="margin-top:25px;color:#9CA3AF;">
+
+        No file selected
+
+    </div>
+
+</section>
+
+<section class="files-section">
+
+<div class="section-header">
+
+<h2>
+
+Recent Files
+
+</h2>
+
+</div>
+
+<div class="file-card">
+
+<div class="file-info">
+
+<h3>
+
+No uploaded files yet
+
+</h3>
+
+<p>
+
+Your Azure files will appear here.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>
+
+© 2026 Azure File Sharing Portal
+
+</p>
+
+</footer>
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>

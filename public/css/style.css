@@ -1,0 +1,50 @@
+@import url("navbar.css");
+@import url("hero.css");
+@import url("upload.css");
+@import url("files.css");
+@import url("responsive.css");
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#0F1117;
+    --surface:#171B22;
+    --border:#2B313C;
+
+    --text:#F3F4F6;
+    --secondary:#9CA3AF;
+
+    --primary:#3B82F6;
+    --success:#22C55E;
+    --danger:#EF4444;
+
+    --radius:16px;
+
+}
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+}
+
+.container{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+}

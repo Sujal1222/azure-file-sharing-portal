@@ -1,0 +1,147 @@
+/* ===========================
+   FILE SECTION
+=========================== */
+
+.files-section{
+
+    max-width:900px;
+
+    margin:0 auto 80px;
+
+}
+
+.section-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.section-header h2{
+
+    font-size:28px;
+
+}
+
+.view-all{
+
+    background:none;
+
+    border:none;
+
+    color:var(--primary);
+
+    cursor:pointer;
+
+    font-size:15px;
+
+}
+
+.file-card{
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:22px 28px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+    transition:.3s;
+
+}
+
+.file-card:hover{
+
+    transform:translateY(-3px);
+
+    border-color:#3b4252;
+
+}
+
+.file-info h3{
+
+    font-size:18px;
+
+    margin-bottom:6px;
+
+}
+
+.file-info p{
+
+    color:var(--secondary);
+
+}
+
+.file-actions{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.download-btn{
+
+    background:white;
+
+    color:black;
+
+    border:none;
+
+    padding:11px 20px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.download-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.delete-btn{
+
+    background:#EF4444;
+
+    color:white;
+
+    border:none;
+
+    padding:11px 20px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.delete-btn:hover{
+
+    transform:translateY(-2px);
+
+}
