@@ -1,27 +1,20 @@
-/* ===========================
-   UPLOAD CARD
-=========================== */
-
 .upload-card{
-
-    width:100%;
-    max-width:850px;
-
-    margin:0 auto 70px;
-
-    padding:60px 40px;
 
     background:var(--surface);
 
-    border:2px dashed var(--border);
+    border:2px dashed #3B82F6;
 
     border-radius:20px;
 
+    padding:60px 40px;
+
+    margin:50px auto;
+
     text-align:center;
 
-    cursor:pointer;
+    transition:.35s;
 
-    transition:all .35s ease;
+    max-width:900px;
 
 }
 
@@ -29,48 +22,43 @@
 
     transform:translateY(-6px);
 
-    border-color:var(--primary);
+    border-color:#60A5FA;
 
-    box-shadow:0 15px 40px rgba(0,0,0,.35);
+    box-shadow:0 20px 45px rgba(59,130,246,.20);
 
 }
 
 .upload-icon{
 
     width:90px;
+
     height:90px;
 
     margin:0 auto 25px;
 
     display:flex;
-    justify-content:center;
+
     align-items:center;
 
-    border-radius:50%;
-
-    background:#202530;
-
-    color:white;
+    justify-content:center;
 
     font-size:42px;
 
-    transition:.3s;
+    border-radius:50%;
 
-}
+    background:rgba(59,130,246,.12);
 
-.upload-card:hover .upload-icon{
-
-    transform:scale(1.08);
-
-    background:var(--primary);
+    color:#60A5FA;
 
 }
 
 .upload-card h2{
 
-    font-size:32px;
+    font-size:34px;
 
     margin-bottom:15px;
+
+    color:white;
 
 }
 
@@ -78,33 +66,29 @@
 
     color:var(--secondary);
 
+    margin-bottom:35px;
+
     font-size:17px;
-
-    line-height:1.8;
-
-    max-width:520px;
-
-    margin:0 auto 35px;
 
 }
 
 .upload-btn{
 
-    padding:15px 32px;
+    background:linear-gradient(135deg,#2563EB,#3B82F6);
+
+    color:white;
 
     border:none;
 
-    border-radius:14px;
+    padding:14px 28px;
 
-    background:white;
+    border-radius:12px;
 
-    color:black;
+    cursor:pointer;
 
     font-size:16px;
 
     font-weight:600;
-
-    cursor:pointer;
 
     transition:.3s;
 
@@ -112,14 +96,20 @@
 
 .upload-btn:hover{
 
-    transform:translateY(-3px);
+    transform:translateY(-2px);
 
-    background:#f3f4f6;
+    box-shadow:0 12px 28px rgba(59,130,246,.35);
 
 }
 
-.upload-btn:active{
+#selectedFile{
 
-    transform:scale(.98);
+    margin-top:25px;
+
+    color:#D1D5DB;
+
+    font-size:15px;
+
+    word-break:break-word;
 
 }

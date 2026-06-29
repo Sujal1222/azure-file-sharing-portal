@@ -8,39 +8,61 @@ browseBtn.addEventListener("click", () => {
 });
 
 fileInput.addEventListener("change", () => {
+
     if (fileInput.files.length > 0) {
+
         selectedFile.innerHTML = `
             <strong>Selected File:</strong><br><br>
             ${fileInput.files[0].name}
         `;
+
     }
+
 });
 
 uploadBtn.addEventListener("click", async () => {
 
-    if(fileInput.files.length === 0){
+    if (fileInput.files.length === 0) {
+
         alert("Please select a file.");
         return;
+
     }
 
     const formData = new FormData();
-
     formData.append("file", fileInput.files[0]);
 
-    const response = await fetch("/upload",{
-        method:"POST",
-        body:formData
-    });
+    try {
 
-    const data = await response.json();
+        const response = await fetch("/upload", {
 
-    alert(data.message);
+            method: "POST",
+            body: formData
 
-    loadFiles();
+        });
+
+        const data = await response.json();
+
+        alert(data.message);
+
+        // Reset selection
+        selectedFile.innerHTML = "No file selected";
+        fileInput.value = "";
+
+        // Refresh file list
+        loadFiles();
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+        alert("Upload failed.");
+
+    }
 
 });
-
-async function loadFiles(){
+async function loadFiles() {
 
     const response = await fetch("/files");
 
@@ -54,34 +76,37 @@ async function loadFiles(){
         </div>
     `;
 
-    files.forEach(file=>{
-fileSection.innerHTML += `
-<div class="file-card">
+    if (files.length === 0) {
 
-    <div class="file-info">
+        fileSection.innerHTML += `
+            <div class="file-card">
+                <div class="file-info">
+                    <h3>No uploaded files yet</h3>
+                    <p>Your Azure files will appear here.</p>
+                </div>
+            </div>
+        `;
 
-        <h3>${file.name}</h3>
+        return;
 
-        <p>${(file.size/1024).toFixed(2)} KB</p>
+    }
 
-    </div>
+    files.forEach(file => {
 
-    <div class="file-actions">
+        fileSection.innerHTML += `
+            <div class="file-card">
 
-        <a href="${file.url}" target="_blank">
+                <div class="file-info">
 
-            <button class="download-btn">
+                    <h3>${file.name}</h3>
 
-                Download
+                    <p>${(file.size / 1024).toFixed(2)} KB</p>
 
-            </button>
+                </div>
 
-        </a>
+            </div>
+        `;
 
-    </div>
-
-</div>
-`;
     });
 
 }

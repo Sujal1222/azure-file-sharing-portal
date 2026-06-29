@@ -48,3 +48,150 @@ body{
     margin:auto;
 
 }
+.delete-btn{
+
+    background:#ff4d4f;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 18px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    margin-left:10px;
+
+    transition:.3s;
+
+}
+
+.delete-btn:hover{
+
+    opacity:.85;
+
+}
+/* Dashboard Cards */
+
+.stats-section{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+    margin:40px 0;
+
+}
+
+.stat-card{
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:30px;
+
+    transition:.3s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+}
+
+.stat-card h3{
+
+    color:var(--secondary);
+
+    font-size:16px;
+
+    margin-bottom:15px;
+
+}
+
+.stat-card h2{
+
+    color:white;
+
+    font-size:36px;
+
+}
+/* Toast Notification */
+
+#toastContainer{
+
+    position:fixed;
+
+    top:25px;
+
+    right:25px;
+
+    z-index:9999;
+
+}
+
+.toast{
+
+    background:#171B22;
+
+    color:white;
+
+    padding:15px 22px;
+
+    margin-bottom:15px;
+
+    border-left:5px solid #3B82F6;
+
+    border-radius:10px;
+
+    min-width:260px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+
+    animation:slideIn .35s ease;
+
+}
+
+.toast.success{
+
+    border-left-color:#22C55E;
+
+}
+
+.toast.error{
+
+    border-left-color:#EF4444;
+
+}
+
+@keyframes slideIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(100%);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}

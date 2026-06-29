@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const { uploadToAzure } = require("../services/azureBlobService");
+const { uploadFile } = require("../services/azureBlobService");
 
 exports.uploadFile = async (req, res) => {
 
@@ -18,9 +18,16 @@ exports.uploadFile = async (req, res) => {
 
         }
 
-        const fileUrl = await uploadToAzure(req.file);
+        const fileBuffer = fs.readFileSync(req.file.path);
 
-        // Delete local temporary file
+        const fileUrl = await uploadFile(
+
+            req.file.originalname,
+
+            fileBuffer
+
+        );
+
         fs.unlinkSync(req.file.path);
 
         res.status(200).json({
