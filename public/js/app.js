@@ -1,12 +1,17 @@
+let allFiles = [];
+
 const browseBtn = document.getElementById("browseBtn");
 const uploadBtn = document.getElementById("uploadBtn");
 const fileInput = document.getElementById("fileInput");
 const selectedFile = document.getElementById("selectedFile");
+const searchInput = document.getElementById("searchInput");
 
+// Browse File
 browseBtn.addEventListener("click", () => {
     fileInput.click();
 });
 
+// Show selected file
 fileInput.addEventListener("change", () => {
 
     if (fileInput.files.length > 0) {
@@ -20,6 +25,7 @@ fileInput.addEventListener("change", () => {
 
 });
 
+// Upload File
 uploadBtn.addEventListener("click", async () => {
 
     if (fileInput.files.length === 0) {
@@ -30,6 +36,7 @@ uploadBtn.addEventListener("click", async () => {
     }
 
     const formData = new FormData();
+
     formData.append("file", fileInput.files[0]);
 
     try {
@@ -45,11 +52,9 @@ uploadBtn.addEventListener("click", async () => {
 
         alert(data.message);
 
-        // Reset selection
         selectedFile.innerHTML = "No file selected";
         fileInput.value = "";
 
-        // Refresh file list
         loadFiles();
 
     }
@@ -57,16 +62,36 @@ uploadBtn.addEventListener("click", async () => {
     catch (err) {
 
         console.error(err);
+
         alert("Upload failed.");
 
     }
 
 });
+
+// Load Files
 async function loadFiles() {
 
-    const response = await fetch("/files");
+    try {
 
-    const files = await response.json();
+        const response = await fetch("/files");
+
+        allFiles = await response.json();
+
+        renderFiles(allFiles);
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+    }
+
+}
+
+// Render Files
+function renderFiles(files) {
 
     const fileSection = document.querySelector(".files-section");
 
@@ -93,56 +118,66 @@ async function loadFiles() {
 
     files.forEach(file => {
 
-    fileSection.innerHTML += `
+        fileSection.innerHTML += `
+            <div class="file-card">
 
-        <div class="file-card">
+                <div class="file-info">
 
-            <div class="file-info">
+                    <h3>${file.name}</h3>
 
-                <h3>${file.name}</h3>
+                    <p>${(file.size / 1024).toFixed(2)} KB</p>
 
-                <p>${(file.size / 1024).toFixed(2)} KB</p>
-
-            </div>
-
-            <div class="file-actions">
+                </div>
 
                 <div class="file-actions">
 
-    <button
-        class="download-btn"
-        onclick="downloadFile('${file.name}')">
+                    <button
+                        class="download-btn"
+                        onclick="downloadFile('${file.name}')">
 
-        Download
+                        Download
 
-    </button>
+                    </button>
 
-    <button
-        class="delete-btn"
-        onclick="deleteFile('${file.name}')">
+                    <button
+                        class="delete-btn"
+                        onclick="deleteFile('${file.name}')">
 
-        Delete
+                        Delete
 
-    </button>
+                    </button>
 
-</div>
+                </div>
 
             </div>
+        `;
 
-        </div>
-
-    `;
-
-});
+    });
 
 }
 
-loadFiles();
+// Search
+searchInput.addEventListener("input", () => {
+
+    console.log("Typing...");
+
+    const keyword = searchInput.value.toLowerCase();
+
+    console.log(keyword);
+
+    const filteredFiles = allFiles.filter(file =>
+        file.name.toLowerCase().includes(keyword)
+    );
+
+    console.log(filteredFiles);
+
+    renderFiles(filteredFiles);
+
+});
+// Delete
 async function deleteFile(fileName) {
 
-    const confirmDelete = confirm(`Delete "${fileName}"?`);
-
-    if (!confirmDelete) return;
+    if (!confirm(`Delete "${fileName}"?`)) return;
 
     try {
 
@@ -169,14 +204,14 @@ async function deleteFile(fileName) {
     }
 
 }
+
+// Download
 async function downloadFile(fileName) {
 
     try {
 
         const response = await fetch(
-
             `/files/download/${encodeURIComponent(fileName)}`
-
         );
 
         const data = await response.json();
@@ -194,3 +229,6 @@ async function downloadFile(fileName) {
     }
 
 }
+
+// Initial Load
+loadFiles();
