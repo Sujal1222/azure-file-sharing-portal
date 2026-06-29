@@ -93,22 +93,104 @@ async function loadFiles() {
 
     files.forEach(file => {
 
-        fileSection.innerHTML += `
-            <div class="file-card">
+    fileSection.innerHTML += `
 
-                <div class="file-info">
+        <div class="file-card">
 
-                    <h3>${file.name}</h3>
+            <div class="file-info">
 
-                    <p>${(file.size / 1024).toFixed(2)} KB</p>
+                <h3>${file.name}</h3>
 
-                </div>
+                <p>${(file.size / 1024).toFixed(2)} KB</p>
 
             </div>
-        `;
 
-    });
+            <div class="file-actions">
+
+                <div class="file-actions">
+
+    <button
+        class="download-btn"
+        onclick="downloadFile('${file.name}')">
+
+        Download
+
+    </button>
+
+    <button
+        class="delete-btn"
+        onclick="deleteFile('${file.name}')">
+
+        Delete
+
+    </button>
+
+</div>
+
+            </div>
+
+        </div>
+
+    `;
+
+});
 
 }
 
 loadFiles();
+async function deleteFile(fileName) {
+
+    const confirmDelete = confirm(`Delete "${fileName}"?`);
+
+    if (!confirmDelete) return;
+
+    try {
+
+        const response = await fetch(`/files/${encodeURIComponent(fileName)}`, {
+
+            method: "DELETE"
+
+        });
+
+        const data = await response.json();
+
+        alert(data.message);
+
+        loadFiles();
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        alert("Delete failed.");
+
+    }
+
+}
+async function downloadFile(fileName) {
+
+    try {
+
+        const response = await fetch(
+
+            `/files/download/${encodeURIComponent(fileName)}`
+
+        );
+
+        const data = await response.json();
+
+        window.open(data.url, "_blank");
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        alert("Download failed.");
+
+    }
+
+}
